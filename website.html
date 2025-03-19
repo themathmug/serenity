@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <link rel="stylesheet" href="website-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1 id="userName">Loading...</h1>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#portfolio" class="portfolio-link">Portfolio</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 id="heroName">Loading...</h1>
+            <p id="tagline">Loading...</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p id="bio">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <h2>My Portfolio</h2>
+                <div class="portfolio-grid">
+                    <!-- Portfolio items will be dynamically populated -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <p id="contactEmail">Loading...</p>
+                        </div>
+                        <div class="info-item phone-item" style="display: none;">
+                            <i class="fas fa-phone"></i>
+                            <p id="contactPhone">Loading...</p>
+                        </div>
+                        <div class="info-item location-item" style="display: none;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p id="contactLocation">Loading...</p>
+                        </div>
+                        <div class="social-links">
+                            <!-- Social links will be dynamically populated -->
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="footerName">Loading...</h3>
+                    <p id="footerTagline">Loading...</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#about">About</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> <span id="copyrightName">Loading...</span>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const websiteData = JSON.parse(localStorage.getItem('websiteData'));
+            if (!websiteData) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Update page title
+            document.title = websiteData.personal.name;
+            
+            // Update personal information
+            document.getElementById('userName').textContent = websiteData.personal.name;
+            document.getElementById('heroName').textContent = websiteData.personal.name;
+            document.getElementById('tagline').textContent = websiteData.personal.tagline;
+            document.getElementById('bio').textContent = websiteData.personal.bio;
+            
+            // Update contact information
+            document.getElementById('contactEmail').textContent = websiteData.contact.email;
+            
+            if (websiteData.contact.phone) {
+                document.getElementById('contactPhone').textContent = websiteData.contact.phone;
+                document.querySelector('.phone-item').style.display = 'flex';
+            }
+            
+            if (websiteData.contact.location) {
+                document.getElementById('contactLocation').textContent = websiteData.contact.location;
+                document.querySelector('.location-item').style.display = 'flex';
+            }
+            
+            // Update footer
+            document.getElementById('footerName').textContent = websiteData.personal.name;
+            document.getElementById('footerTagline').textContent = websiteData.personal.tagline;
+            document.getElementById('copyrightName').textContent = websiteData.personal.name;
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Add social links
+            const socialLinks = document.querySelector('.social-links');
+            const socialIcons = {
+                github: 'fab fa-github',
+                linkedin: 'fab fa-linkedin',
+                twitter: 'fab fa-twitter',
+                instagram: 'fab fa-instagram'
+            };
+
+            Object.entries(websiteData.contact.social).forEach(([platform, url]) => {
+                if (url) {
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.className = 'social-link';
+                    link.innerHTML = `<i class="${socialIcons[platform]}"></i>`;
+                    link.target = '_blank';
+                    socialLinks.appendChild(link);
+                }
+            });
+
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
