@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenity Personal - Setup</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="setup-wizard" id="setupWizard">
+        <div class="wizard-step" data-step="1">
+            <h2>Welcome to Serenity Personal</h2>
+            <p>Let's create your personal website in just a few steps.</p>
+            <button class="next-btn">Get Started</button>
+        </div>
+
+        <div class="wizard-step" data-step="2">
+            <h2>About You</h2>
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" id="userName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>What You Do</label>
+                <input type="text" id="profession" placeholder="e.g., Photographer, Writer, Designer">
+            </div>
+            <div class="form-group">
+                <label>Bio</label>
+                <textarea id="bio" placeholder="Tell us about yourself"></textarea>
+            </div>
+            <div class="button-group">
+                <button class="back-btn">Back</button>
+                <button class="next-btn">Next</button>
+            </div>
+        </div>
+
+        <div class="wizard-step" data-step="3">
+            <h2>Choose Your Style</h2>
+            <div class="style-picker">
+                <div class="style-option" data-style="minimal">
+                    <img src="https://via.placeholder.com/200x150?text=Minimal" alt="Minimal">
+                    <h3>Minimal</h3>
+                    <p>Clean and simple design</p>
+                </div>
+                <div class="style-option" data-style="creative">
+                    <img src="https://via.placeholder.com/200x150?text=Creative" alt="Creative">
+                    <h3>Creative</h3>
+                    <p>Artistic and expressive</p>
+                </div>
+                <div class="style-option" data-style="professional">
+                    <img src="https://via.placeholder.com/200x150?text=Professional" alt="Professional">
+                    <h3>Professional</h3>
+                    <p>Polished and refined</p>
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="back-btn">Back</button>
+                <button class="next-btn">Next</button>
+            </div>
+        </div>
+
+        <div class="wizard-step" data-step="4">
+            <h2>Customize</h2>
+            <div class="form-group">
+                <label>Choose Sections</label>
+                <div class="section-options">
+                    <label class="section-option">
+                        <input type="checkbox" value="about" checked>
+                        <span>About Me</span>
+                    </label>
+                    <label class="section-option">
+                        <input type="checkbox" value="portfolio" checked>
+                        <span>Portfolio</span>
+                    </label>
+                    <label class="section-option">
+                        <input type="checkbox" value="blog">
+                        <span>Blog</span>
+                    </label>
+                    <label class="section-option">
+                        <input type="checkbox" value="contact" checked>
+                        <span>Contact</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Contact Information</label>
+                <input type="email" id="email" placeholder="Email address">
+                <div class="social-links">
+                    <input type="text" placeholder="Twitter URL">
+                    <input type="text" placeholder="Instagram URL">
+                    <input type="text" placeholder="LinkedIn URL">
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="back-btn">Back</button>
+                <button class="finish-btn">Create My Website</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <h3>Creating Your Personal Website...</h3>
+        <p>Almost there!</p>
+    </div>
+
+    <script src="setup.js"></script>
+</body>
+</html>
